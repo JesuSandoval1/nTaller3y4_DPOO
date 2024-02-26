@@ -8,17 +8,42 @@ import org.json.JSONObject;
 public class ClienteCorporativo extends Cliente
 {
     // TODO completar
-    
+	public static final String CORPORATIVO = "Corporativo";
+	public static final int GRANDE = 1;
+	public static final int MEDIANA = 2;
+	public static final int PEQUENA = 3;
+	private String nombreEmpresa;
+	private int tamanoEmpresa;
 
 
-    /**
-     * Crea un nuevo objeto de tipo a partir de un objeto JSON.
-     * 
-     * El objeto JSON debe tener dos atributos: nombreEmpresa (una cadena) y tamanoEmpresa (un número).
-     * @param cliente El objeto JSON que contiene la información
-     * @return El nuevo objeto inicializado con la información
-     */
-    public static ClienteCorporativo cargarDesdeJSON( JSONObject cliente )
+	public ClienteCorporativo(String nombreEmpresa,	int tamano) {
+		
+	}
+	
+	public String getNombreEmpresa() {
+		return null;
+	}
+	
+	public int getTamanoEmpresa() {
+		return -1;
+	}
+	
+	public String getTipoCliente() {
+		return null;
+	}
+	
+	public String getIdentificador() {
+		return null;
+	}
+	
+	/**
+	 * Crea un nuevo objeto de tipo a partir de un objeto JSON.
+	 * 
+	 * El objeto JSON debe tener dos atributos: nombreEmpresa (una cadena) y tamanoEmpresa (un número).
+	 * @param cliente El objeto JSON que contiene la información
+	 * @return El nuevo objeto inicializado con la información
+	 */
+	public static ClienteCorporativo cargarDesdeJSON( JSONObject cliente )
     {
         String nombreEmpresa = cliente.getString( "nombreEmpresa" );
         int tam = cliente.getInt( "tamanoEmpresa" );
@@ -35,6 +60,6 @@ public class ClienteCorporativo extends Cliente
         jobject.put( "nombreEmpresa", this.nombreEmpresa );
         jobject.put( "tamanoEmpresa", this.tamanoEmpresa );
         jobject.put( "tipo", CORPORATIVO );
-        return jobject;
-    }
+		return jobject;
+	}
 }
