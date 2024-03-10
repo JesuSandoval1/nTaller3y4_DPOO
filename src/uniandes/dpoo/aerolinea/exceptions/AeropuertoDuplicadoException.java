@@ -20,6 +20,6 @@ public class AeropuertoDuplicadoException extends Exception
     @Override
     public String getMessage( )
     {
-        return "El código '" + codigoDuplicado + "' está repetido";
+        return "El código '" + this.codigoDuplicado + "' está repetido";
     }
 }

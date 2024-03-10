@@ -1,7 +1,10 @@
 package uniandes.dpoo.aerolinea.modelo;
 
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 import uniandes.dpoo.aerolinea.exceptions.VueloSobrevendidoException;
@@ -31,7 +34,9 @@ public class Vuelo {
 	}
 
 	public Collection<Tiquete> getTiquetes() {
-		return null;
+		Collection<Tiquete> listaTiquetes = new ArrayList<Tiquete>();
+		listaTiquetes = this.tiquetes.values();
+		return listaTiquetes;
 	}
 
 	public int venderTiquetes​(Cliente cliente, CalculadoraTarifas calculadora, int cantidad)

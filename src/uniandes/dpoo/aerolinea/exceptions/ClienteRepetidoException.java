@@ -26,7 +26,7 @@ public class ClienteRepetidoException extends InformacionInconsistenteException
     @Override
     public String getMessage( )
     {
-        return "Cliente repetido: ya existe un cliente de tipo " + tipoCliente + "  con el identificador " + this.identificador;
+        return "Cliente repetido: ya existe un cliente de tipo " + this.tipoCliente + "  con el identificador " + this.identificador;
     }
 
 }
