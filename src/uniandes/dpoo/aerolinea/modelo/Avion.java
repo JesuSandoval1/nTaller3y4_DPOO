@@ -6,14 +6,16 @@ public class Avion {
 	private int capacidad;
 	
 	public Avion(String nombre, int capacidad) {
+		this.nombre = nombre;
+		this.capacidad = capacidad;
 	}
 	
 	public String getNombre() {
-		return null;
+		return this.nombre;
 	}
 	
 	public int getCapacidad() {
-		return -1;
+		return this.capacidad;
 	}
 }
 	

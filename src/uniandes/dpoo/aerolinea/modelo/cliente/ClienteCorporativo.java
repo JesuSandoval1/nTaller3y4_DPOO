@@ -14,28 +14,42 @@ public class ClienteCorporativo extends Cliente
 	public static final int PEQUENA = 3;
 	private String nombreEmpresa;
 	private int tamanoEmpresa;
+	private String id;
 
 
 	public ClienteCorporativo(String nombreEmpresa,	int tamano) {
-		
+		super();
+		this.nombreEmpresa = nombreEmpresa;
+		this.tamanoEmpresa = tamano;
+		this.id = generadorIds();
 	}
 	
 	public String getNombreEmpresa() {
-		return null;
+		return this.nombreEmpresa;
 	}
 	
 	public int getTamanoEmpresa() {
-		return -1;
+		return this.tamanoEmpresa;
 	}
 	
 	public String getTipoCliente() {
-		return null;
+		return ClienteCorporativo.CORPORATIVO;
 	}
 	
 	public String getIdentificador() {
-		return null;
+		return this.id;
 	}
 	
+	@Override
+	public String generadorIds() {
+		String codigo;
+		do {
+		int numero = (int) (Math.random() * 10e7);
+		codigo = String.format("C%07d", numero);
+		} while (identificadores.contains(codigo));
+		identificadores.add(codigo);
+		return codigo;
+	}
 	/**
 	 * Crea un nuevo objeto de tipo a partir de un objeto JSON.
 	 * 
@@ -62,4 +76,6 @@ public class ClienteCorporativo extends Cliente
         jobject.put( "tipo", CORPORATIVO );
 		return jobject;
 	}
+
+
 }

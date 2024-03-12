@@ -12,7 +12,11 @@ public class Tiquete {
 	private boolean usado;
 
 	public Tiquete(String codigo, Vuelo vuelo, Cliente clienteComprador, int tarifa) {
-
+		this.codigo = codigo;
+		this.vuelo = vuelo;
+		this.cliente = clienteComprador;
+		this.tarifa = tarifa;
+		this.usado = false;
 	}
 
 	public Cliente getCliente() {
@@ -32,10 +36,10 @@ public class Tiquete {
 	}
 	
 	public void marcarComoUsado() {
-	
+		this.usado = true;
 	}
 	
 	public boolean esUsado() {
-		return false;
+		return this.usado;
 	}
 }

@@ -3,8 +3,10 @@ package uniandes.dpoo.aerolinea.modelo;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
+import uniandes.dpoo.aerolinea.tiquetes.GeneradorTiquetes;
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
 import uniandes.dpoo.aerolinea.modelo.cliente.Cliente;
 import uniandes.dpoo.aerolinea.exceptions.VueloSobrevendidoException;
@@ -18,7 +20,10 @@ public class Vuelo {
 	private Map<String,Tiquete> tiquetes;
 	
 	public Vuelo(Ruta ruta, String fecha, Avion avion) {
-		
+		this.fecha = fecha;
+		this.avion = avion;
+		this.ruta = ruta;
+		this.tiquetes = new HashMap<String, Tiquete>();
 	}
 
 	public Ruta getRuta() {
@@ -34,14 +39,26 @@ public class Vuelo {
 	}
 
 	public Collection<Tiquete> getTiquetes() {
-		Collection<Tiquete> listaTiquetes = new ArrayList<Tiquete>();
-		listaTiquetes = this.tiquetes.values();
-		return listaTiquetes;
+		return this.tiquetes.values();
 	}
 
 	public int venderTiquetes​(Cliente cliente, CalculadoraTarifas calculadora, int cantidad)
 			throws VueloSobrevendidoException {
-		return -1;
+		int nTotalTiquetes = this.tiquetes.size() + cantidad;
+	    if(nTotalTiquetes <= this.avion.getCapacidad()){
+	        int tarifaIndividual = calculadora.calcularTarifa​(this, cliente);
+	        int tarifaTotal = tarifaIndividual * cantidad;
+	        
+	        for (int i = 0; i < cantidad; i++) {
+	            Tiquete nTiquete = GeneradorTiquetes.generarTiquete(this, cliente, tarifaIndividual);
+	            this.tiquetes.put(nTiquete.getCodigo(), nTiquete);
+	            cliente.agregarTiquete​(nTiquete);
+	            GeneradorTiquetes.registrarTiquete(nTiquete);
+	        }
+	        return tarifaTotal;
+	    }else{
+	        throw new VueloSobrevendidoException(this);
+	    }
 	}
 	
 	public boolean equals​(Object obj) {

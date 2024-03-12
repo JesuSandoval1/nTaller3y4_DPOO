@@ -45,9 +45,11 @@ public class GeneradorTiquetes
      * Registra que un cierto tiquete ya fue vendido, para que el generador de tiquetes no vaya a generar otro tiquete con el mismo código
      * @param unTiquete El tiquete existente
      */
-    public static void registrarTiquete( Tiquete unTiquete )
-    {
-        // TODO implementar
+    public static void registrarTiquete( Tiquete unTiquete ){
+    	String codigoTiquete = unTiquete.getCodigo();
+        if (!(codigos.contains(codigoTiquete))) {
+            codigos.add(codigoTiquete);
+        }
     }
 
     /**
@@ -57,7 +59,6 @@ public class GeneradorTiquetes
      */
     public static boolean validarTiquete( String codigoTiquete )
     {
-        // TODO implementar
-        return false;
+    	return codigos.contains(codigoTiquete);
     }
 }
